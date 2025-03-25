@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | Stay Assist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/features.css') }}">
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .greeting {
+            margin-bottom: 30px;
+        }
+        
+        .requests-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .request-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .request-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .request-service {
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .request-date {
+            color: #7f8c8d;
+        }
+        
+        .request-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .status-confirmed {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .status-completed {
+            background-color: #95a5a6;
+            color: white;
+        }
+        
+        .no-requests {
+            color: #7f8c8d;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .user-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            width: 150px;
+            color: #34495e;
+        }
+        
+        .info-value {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/Logo.svg') }}" alt="Stay Assist Logo" />
+                Stay Assist
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('auth.features') }}">Services</a>
+                <a href="{{ url_for('auth.user_dashboard') }}" class="active">Dashboard</a>
+                <a href="{{ url_for('auth.logout') }}">Logout</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="greeting">
+            <h1>Welcome back, {{ user.first_name }}!</h1>
+            <p>Here's your service request dashboard</p>
+        </div>
+        
+        <div class="user-info">
+            <h3>Your Information</h3>
+            <div class="info-row">
+                <div class="info-label">Name:</div>
+                <div class="info-value">{{ user.first_name }} {{ user.last_name }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Email:</div>
+                <div class="info-value">{{ user.email }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Phone:</div>
+                <div class="info-value">{{ user.phone_number }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Hostel:</div>
+                <div class="info-value">{{ user.hostel }} - Block {{ user.block }}, Room {{ user.room_number }}</div>
+            </div>
+        </div>
+        
+        <!-- Pending Requests Section -->
+        <div class="requests-section">
+            <h2 class="section-title">Pending Requests</h2>
+            {% if pending_requests %}
+                {% for request in pending_requests %}
+                <div class="request-card">
+                    <div class="request-header">
+                        <span class="request-service">{{ request.service_type|title }} Service</span>
+                        <span class="request-status status-pending">{{ request.status|title }}</span>
+                    </div>
+                    <div class="request-date">Requested for: {{ request.date.strftime('%A, %B %d at %I:%M %p') }}</div>
+                    <p>{{ request.issue_description }}</p>
+                    {% if request.service_type == 'cleaning' %}
+                        <p>Frequency: {{ request.get_service_data().get('frequency', 'One-time') }}</p>
+                    {% elif request.service_type == 'pest' %}
+                        <p>Pest Type: {{ request.get_service_data().get('pest_type', 'Not specified') }}</p>
+                    {% elif request.service_type == 'ac' %}
+                        <p>Service Type: {{ request.get_service_data().get('service_type', 'General') }}</p>
+                    {% elif request.service_type == 'furniture' %}
+                        <p>Furniture Type: {{ request.get_service_data().get('furniture_type', 'Not specified') }}</p>
+                    {% endif %}
+                    <a href="{{ url_for('auth.booking_confirmation', request_id=request.id) }}" class="btn-view">View Details</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-requests">You don't have any pending service requests</div>
+            {% endif %}
+        </div>
+        
+        <!-- Confirmed Requests Section -->
+        <div class="requests-section">
+            <h2 class="section-title">Confirmed Requests</h2>
+            {% if confirmed_requests %}
+                {% for request in confirmed_requests %}
+                <div class="request-card">
+                    <div class="request-header">
+                        <span class="request-service">{{ request.service_type|title }} Service</span>
+                        <span class="request-status status-confirmed">{{ request.status|title }}</span>
+                    </div>
+                    <div class="request-date">Scheduled for: {{ request.date.strftime('%A, %B %d at %I:%M %p') }}</div>
+                    <p>{{ request.issue_description }}</p>
+                    <a href="{{ url_for('auth.booking_confirmation', request_id=request.id) }}" class="btn-view">View Details</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-requests">You don't have any confirmed service requests</div>
+            {% endif %}
+        </div>
+        
+        <!-- Completed Requests Section -->
+        <div class="requests-section">
+            <h2 class="section-title">Completed Requests</h2>
+            {% if completed_requests %}
+                {% for request in completed_requests %}
+                <div class="request-card">
+                    <div class="request-header">
+                        <span class="request-service">{{ request.service_type|title }} Service</span>
+                        <span class="request-status status-completed">{{ request.status|title }}</span>
+                    </div>
+                    <div class="request-date">Completed on: {{ request.date.strftime('%A, %B %d at %I:%M %p') }}</div>
+                    <p>{{ request.issue_description }}</p>
+                    <a href="{{ url_for('auth.booking_confirmation', request_id=request.id) }}" class="btn-view">View Details</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-requests">You don't have any completed service requests</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Format dates nicely
+        document.addEventListener('DOMContentLoaded', function() {
+            // Any additional JavaScript can go here
+        });
+    </script>
+</body>
+</html>
