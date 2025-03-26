@@ -549,3 +549,10 @@ body {
     color: #3498db;
     border-bottom: 2px solid #3498db;
 }
+.request-image {
+    max-width: 200px;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}

@@ -12,7 +12,6 @@
             padding: 30px;
             background-color: #fff;
             border-radius: 10px;
-            justify-content: center;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         
@@ -89,6 +88,23 @@
             background-color: #2ecc71;
             color: white;
         }
+
+        /* Added styling for request image */
+        .request-image {
+            max-width: 100%;
+            max-height: 400px;
+            width: auto;
+            height: auto;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .image-section {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -100,8 +116,8 @@
             </div>
             <div class="nav-links">
                 <a href="#">Home</a>
-                <a href="#">Services</a>
-                <a href="#">Contact</a>
+                <a href="{{ url_for('auth.features') }}">Services</a>
+                <a href="{{ url_for('auth.user_dashboard') }}">Dashboard</a>
             </div>
         </nav>
     </div>
@@ -136,22 +152,22 @@
             {% if service_type == 'cleaning' %}
             <div class="detail-row">
                 <div class="detail-label">Frequency:</div>
-                <div class="detail-value">{{ frequency }}</div>
+                <div class="detail-value">{{ frequency|capitalize }}</div>
             </div>
             {% elif service_type == 'pest' %}
             <div class="detail-row">
                 <div class="detail-label">Pest Type:</div>
-                <div class="detail-value">{{ pest_type }}</div>
+                <div class="detail-value">{{ pest_type|capitalize }}</div>
             </div>
             {% elif service_type == 'ac' %}
             <div class="detail-row">
                 <div class="detail-label">Service Type:</div>
-                <div class="detail-value">{{ service_type }}</div>
+                <div class="detail-value">{{ service_type|capitalize }}</div>
             </div>
             {% elif service_type == 'furniture' %}
             <div class="detail-row">
                 <div class="detail-label">Furniture Type:</div>
-                <div class="detail-value">{{ furniture_type }}</div>
+                <div class="detail-value">{{ furniture_type|capitalize }}</div>
             </div>
             {% endif %}
             
@@ -162,9 +178,20 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- Enhanced image section -->
+        <div class="image-section">
+            {% if image_path %}
+                <h3>Attached Image</h3>
+                <img src="{{ url_for('static', filename='uploads/' + image_path) }}" 
+                     alt="Service Request Image" 
+                     class="request-image">
+            {% endif %}
+        </div>
+
         <div class="actions">
             <p>We'll contact you shortly to confirm your booking. You can view all your requests in your dashboard.</p>
+            <a href="{{ url_for('auth.user_dashboard') }}" class="btn-primary">Back to Dashboard</a>
         </div>
     </div>
 
