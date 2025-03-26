@@ -334,6 +334,3 @@ def delete_request(request_id):
         current_app.logger.error(f"Error deleting request {request_id}: {str(e)}")
         
     return redirect(url_for('auth.user_dashboard'))
-@auth.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(os.path.join(os.getcwd(), 'uploads'), filename)
