@@ -98,12 +98,17 @@
         .user-info {
             background-color: #f8f9fa;
             padding: 20px;
+            color: black;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
             border-radius: 8px;
             margin-bottom: 30px;
         }
         
         .info-row {
             display: flex;
+            justify-content: left;
             margin-bottom: 10px;
         }
         
@@ -176,20 +181,20 @@
         <div class="user-info">
             <h3>Your Information</h3>
             <div class="info-row">
-                <div class="info-label">Name:</div>
-                <div class="info-value">{{ user.first_name }} {{ user.last_name }}</div>
+                <div class="info-label">Name: {{ user.first_name }} {{ user.last_name }}</div>
+                <!-- <div class="info-value"></div> -->
             </div>
             <div class="info-row">
-                <div class="info-label">Email:</div>
-                <div class="info-value">{{ user.email }}</div>
+                <div class="info-label">Email: {{ user.email }}</div>
+                <!-- <div class="info-value"></div> -->
             </div>
             <div class="info-row">
-                <div class="info-label">Phone:</div>
-                <div class="info-value">{{ user.phone_number }}</div>
+                <div class="info-label">Phone: {{ user.phone_number }}</div>
+                <!-- <div class="info-value"></div> -->
             </div>
             <div class="info-row">
-                <div class="info-label">Hostel:</div>
-                <div class="info-value">{{ user.hostel }} - Block {{ user.block }}, Room {{ user.room_number }}</div>
+                <div class="info-label">Hostel: {{ user.hostel }}, Block - {{ user.block }}, Room - {{ user.room_number }}</div>
+                <div class="info-value"></div>
             </div>
         </div>
         
