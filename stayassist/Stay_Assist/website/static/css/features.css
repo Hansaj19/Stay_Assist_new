@@ -102,7 +102,7 @@ body {
 .service-card {
     position: relative;
     flex: 1;
-    max-width: calc(50% - 10px);
+    max-width: calc(100% - 10px);
     display: flex;
     align-items: center;
     justify-content: center;
