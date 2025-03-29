@@ -583,11 +583,11 @@ body {
 
 #about-us h2 {
     font-size: 2rem;
-    color: #333;
+    color: #000000;
 }
 
 #about-us p {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #555;
+    color: #ded2d2;
 }
