@@ -198,8 +198,8 @@ body {
     padding: 10px;
     border: 1px solid #444;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
     font-family: "Poppins", sans-serif;
 }
 
