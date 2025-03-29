@@ -20,4 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Invalid email or password.");
         }
     });
+
+    //scroll
+    function scrollToSection(sectionId) {
+        const section = document.querySelector(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+
+    // Navbar buttons
+    document.querySelector("a[href='#about-us']").addEventListener("click", function (e) {
+        e.preventDefault();
+        scrollToSection(".about-us");
+    });
 });

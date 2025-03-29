@@ -20,9 +20,9 @@
           Stay Assist
         </div>
         <div class="nav-links">
-          <a href="#">Logout</a>
-          <a href="#">About Us</a>
-          <a href="#">Feedback</a>
+          <a href="{{ url_for('auth.logout') }}">Logout</a>
+          <a href="#about">About Us</a>
+          <a href="#feedback">Feedback</a>
         </div>
       </nav>
     </div>
@@ -356,7 +356,28 @@
         </div>
       </div>
     </div>
-
+    <section id="about-us" class="about-us">
+      <div class="container">
+          <div><h2>About Us</h2></div>
+          <p>
+              Welcome to <strong>Stay Assist</strong> – your one-stop solution for hassle-free living in college!  
+              We understand the everyday challenges students face while managing accommodation and essential services. 
+              Our platform simplifies the process by connecting you with trusted service providers for 
+              <strong>electric repairs, furniture fixes, laundry, room cleaning, and pest control</strong>.
+          </p>
+          <p>
+              At Stay Assist, we aim to create a seamless experience by offering a user-friendly interface 
+              that lets you request services effortlessly. Whether it's a power outage, a broken chair, or 
+              a laundry emergency, we’ve got you covered!  
+          </p>
+          <p>
+              Our mission is to enhance student living by making service booking quick, reliable, and efficient. 
+              With just a few clicks, you can schedule your needs and get professional help at your doorstep.
+          </p>
+          <p><strong>Your comfort, our priority!</strong></p>
+      </div>
+  </section>
+  
     <!-- What's Next Section -->
     <section class="whats-next">
       <h2>What's next</h2>

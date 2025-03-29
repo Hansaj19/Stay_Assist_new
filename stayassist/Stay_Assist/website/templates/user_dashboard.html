@@ -21,12 +21,13 @@
         }
 
         .dashboard-container {
-            max-width: 1200px;
+            max-width:100%;
             margin: 30px auto;
             padding: 20px;
         }
         
         .greeting {
+            margin-top: 30px;
             margin-bottom: 30px;
         }
         
@@ -100,22 +101,15 @@
             padding: 20px;
             color: black;
             width: 100%;
-            display: flex;
-            justify-content: space-evenly;
             border-radius: 8px;
             margin-bottom: 30px;
         }
         
-        .info-row {
-            display: flex;
-            justify-content: left;
-            margin-bottom: 10px;
-        }
-        
         .info-label {
             font-weight: bold;
-            width: 150px;
-            color: #34495e;
+            width: 100%;
+            margin: 15px;
+            color: #000000;
         }
         
         .info-value {
@@ -179,20 +173,18 @@
         </div>
         
         <div class="user-info">
-            <h3>Your Information</h3>
-            <div class="info-row">
+            <h3>Your Information<br></h3>
+            
                 <div class="info-label">Name: {{ user.first_name }} {{ user.last_name }}</div>
                 <!-- <div class="info-value"></div> -->
-            </div>
-            <div class="info-row">
+            
+            
                 <div class="info-label">Email: {{ user.email }}</div>
                 <!-- <div class="info-value"></div> -->
-            </div>
-            <div class="info-row">
+            
                 <div class="info-label">Phone: {{ user.phone_number }}</div>
                 <!-- <div class="info-value"></div> -->
-            </div>
-            <div class="info-row">
+            
                 <div class="info-label">Hostel: {{ user.hostel }}, Block - {{ user.block }}, Room - {{ user.room_number }}</div>
                 <div class="info-value"></div>
             </div>
