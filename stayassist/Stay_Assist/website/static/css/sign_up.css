@@ -244,3 +244,29 @@ button:hover {
     padding: 10px;
   }
 }
+#about-us {
+  padding-left:20px;
+  padding-right:20px;
+  /* background-color: #f8f9fa; */
+  text-align: center;
+  
+}
+
+#about-us .container {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left:110px;
+  margin-bottom: 30px;
+}
+
+#about-us h2 {
+  font-size: 4rem;
+  color: #ffffff;
+}
+
+#about-us p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #ded2d2;
+}
