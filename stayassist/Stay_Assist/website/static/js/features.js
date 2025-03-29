@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelector("a[href='#about']").addEventListener("click", function (e) {
         e.preventDefault();
-        scrollToSection(".whats-next");
+        scrollToSection(".about-us");
     });
 
   });
