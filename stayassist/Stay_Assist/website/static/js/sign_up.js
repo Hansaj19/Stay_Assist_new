@@ -31,4 +31,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         // If validation passes, the form will submit normally
     });
+    function scrollToSection(sectionId) {
+        const section = document.querySelector(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+
+    // Navbar buttons
+    document.querySelector("a[href='#about']").addEventListener("click", function (e) {
+        e.preventDefault();
+        scrollToSection(".about-us");
+    });
 });
