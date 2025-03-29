@@ -331,6 +331,26 @@ document.addEventListener("DOMContentLoaded", function () {
       .addEventListener("click", function () {
         document.getElementById("success-modal").style.display = "none";
       });
+
+    //scroll funxtion
+    function scrollToSection(sectionId) {
+        const section = document.querySelector(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+
+    // Navbar buttons
+    document.querySelector("a[href='#feedback']").addEventListener("click", function (e) {
+        e.preventDefault();
+        scrollToSection(".testimonials");
+    });
+
+    document.querySelector("a[href='#about']").addEventListener("click", function (e) {
+        e.preventDefault();
+        scrollToSection(".whats-next");
+    });
+
   });
 
   async function loadAllServiceRequests() {
