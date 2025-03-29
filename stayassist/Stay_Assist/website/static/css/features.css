@@ -332,10 +332,6 @@ body {
     margin-bottom: 20px;
 }
 
-.user-info {
-    display: flex;
-    align-items: center;
-}
 
 .user-avatar {
     width: 40px;
