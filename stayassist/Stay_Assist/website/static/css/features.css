@@ -200,6 +200,15 @@ body {
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.9);
     color: rgb(0, 0, 0);
+    font-family: "Poppins", sans-serif;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-group input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     background: rgba(255, 255, 255, 0.9);
     color: rgb(0, 0, 0);
     font-family: "Poppins", sans-serif;
@@ -294,9 +303,9 @@ body {
 }
 
 .testimonial {
-    padding: 20px;
     border-radius: 10px;
     position: relative;
+    padding:20px;
 }
 
 .testimonial.yellow {
@@ -315,7 +324,7 @@ body {
 }
 
 .testimonial.pink {
-    background-color: rgba(67, 76, 57, 1);
+    background-color: rgba(67, 76, 57, 0.875);
     color: white;
 }
 
@@ -595,29 +604,3 @@ body {
     color: #ded2d2;
 }
 
-#about-us {
-    padding-left:20px;
-    padding-right:20px;
-    /* background-color: #f8f9fa; */
-    text-align: center;
-    
-}
-
-#about-us .container {
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-left:50px;
-    margin-bottom: 30px;
-}
-
-#about-us h2 {
-    font-size: 4rem;
-    color: #ffffff;
-}
-
-#about-us p {
-    font-size: 1.3rem;
-    line-height: 1.6;
-    color: #ded2d2;
-}
